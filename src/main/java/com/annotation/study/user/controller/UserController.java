@@ -7,7 +7,9 @@ import com.annotation.study.user.model.NewUser;
 import com.annotation.study.user.model.User;
 import com.annotation.study.user.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Import({ImportUser.class})
+@PropertySource(value = "classpath:config/config.properties", encoding = "utf-8")
 public class UserController {
 
     @Resource
@@ -29,6 +32,13 @@ public class UserController {
     NewUser newUser;
     @Autowired
     ImportUser importUser;
+
+    @Value("${name}")
+    String name;
+    @Value("${age}")
+    Integer age;
+    @Value("${sex}")
+    Integer sex;
 
     @RequestMapping("/all")
     public void findAll() {
@@ -72,6 +82,21 @@ public class UserController {
         importUser.setName("bohan.zhou");
         importUser.setHeight(178);
         return importUser;
+    }
+
+    @RequestMapping("/getValueUser")
+    public String getValueUser(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("name:");
+        stringBuilder.append(name);
+
+        stringBuilder.append(" age:");
+        stringBuilder.append(age);
+
+        stringBuilder.append(" sex:");
+        stringBuilder.append(sex);
+
+        return stringBuilder.toString();
     }
 
 }

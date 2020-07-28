@@ -22,6 +22,7 @@
 2. @Component 注册bean
 3. @Import 注册bean
 
+* @PropertySource + @Value 实现配置文件设置值
 
 
 
