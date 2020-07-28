@@ -10,6 +10,19 @@
 6. NEVER：无事务执行，如果当前有事务则抛出Exception。
 7. NESTED：嵌套事务，如果当前事务存在，那么在嵌套的事务中执行。如果当前事务不存在，则表现跟REQUIRED一样。
 
+* @Configuation
+相当于<Beans><Beans>
+
+* @Bean
+相当于<Bean></Bean>
+
+* @ComponentScan
+相当于<context:component-scan base-package=""/>
+1. @Configuration + @Bean 注册bean
+2. @Component 注册bean
+3. @Import 注册bean
+
+
 
 
 
