@@ -41,8 +41,8 @@ public class UserController {
     Integer sex;
 
     @RequestMapping("/all")
-    public void findAll() {
-        List<User> list = userMapper.findAll();
+    public List<User> findAll() {
+        return userMapper.findAll();
     }
 
     @RequestMapping("/insert")

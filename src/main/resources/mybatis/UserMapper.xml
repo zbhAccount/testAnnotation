@@ -12,7 +12,7 @@
   <sql id="Base_Column_List">
     id, name, age, sex
   </sql>
-  <select id="findAll"  resultMap="com.annotation.study.user.model.User">
+  <select id="findAll"  resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user

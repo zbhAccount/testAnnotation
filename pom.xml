@@ -67,6 +67,11 @@
     </dependencies>
 
     <build>
+
+        <filters>
+            <filter>src/main/filters/${env}.properties</filter>
+        </filters>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -74,5 +79,46 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!--本地环境-->
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>development</env>
+            </properties>
+        </profile>
+        <!--测试环境-->
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <!--测试2环境-->
+        <profile>
+            <id>test2</id>
+            <properties>
+                <env>test2</env>
+            </properties>
+        </profile>
+        <!--正式环境-->
+        <profile>
+            <id>product</id>
+            <properties>
+                <env>product</env>
+            </properties>
+        </profile>
+        <!--预生产环境-->
+        <profile>
+            <id>preProduct</id>
+            <properties>
+                <env>preProduct</env>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

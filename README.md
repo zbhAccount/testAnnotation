@@ -23,6 +23,11 @@
 3. @Import 注册bean
 
 * @PropertySource + @Value 实现配置文件设置值
+* 多环境配置
+<filters>
+    <filter>
+    </filter>
+</filters>
 
 
 
