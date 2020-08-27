@@ -31,11 +31,11 @@
 
 
 ### 线程池的几种使用方式
-1、springPoolTaskExecutor <br>
-2、扩展springPoolTaskExecutor <br>
-3、ThreadPoolExecutor <br>
-4、扩展ThreadPoolExecutor <br>
-5、Future <br>
+1. springPoolTaskExecutor <br>
+ 1.1 非注解方式 <br>
+ 1.2 注解方式 @EnableAsync + @Async 加了@EnableAsync才能使@Async有效 <br>
+2. 扩展ThreadPoolExecutor <br>
+3. Future <br>
 
 
 

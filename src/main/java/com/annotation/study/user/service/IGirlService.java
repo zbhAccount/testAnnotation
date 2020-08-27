@@ -6,6 +6,6 @@ public interface IGirlService {
 
     public int insert(User user);
 
-    public int update(User user);
+    public void update(User user);
 
 }

@@ -7,6 +7,7 @@ import com.annotation.study.user.model.NewUser;
 import com.annotation.study.user.model.User;
 import com.annotation.study.user.service.IGirlService;
 import com.annotation.study.user.service.impl.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Import;
@@ -18,6 +19,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Stack;
 
+@Slf4j
 @RestController
 @RequestMapping("/user")
 @Import({ImportUser.class})
@@ -111,6 +113,13 @@ public class UserController {
         user.setName("蜜姐姐");
         user.setAge(27);
         iGirlService.insert(user);
+    }
+
+    @RequestMapping("updateUser")
+    public void updateUser(){
+        Thread t = Thread.currentThread();
+        log.info("多线程：{}", t.getName());
+        iGirlService.update(new User());
     }
 
 }
