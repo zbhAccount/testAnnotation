@@ -30,5 +30,15 @@
 </filters>
 
 
+### 线程池的几种使用方式
+1、springPoolTaskExecutor <br>
+2、扩展springPoolTaskExecutor <br>
+3、ThreadPoolExecutor <br>
+4、扩展ThreadPoolExecutor <br>
+5、Future <br>
+
+
+
+
 
 

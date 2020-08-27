@@ -5,6 +5,7 @@ import com.annotation.study.user.mapper.UserMapper;
 import com.annotation.study.user.model.ImportUser;
 import com.annotation.study.user.model.NewUser;
 import com.annotation.study.user.model.User;
+import com.annotation.study.user.service.IGirlService;
 import com.annotation.study.user.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Stack;
 
 @RestController
 @RequestMapping("/user")
@@ -32,6 +34,8 @@ public class UserController {
     NewUser newUser;
     @Autowired
     ImportUser importUser;
+    @Autowired
+    IGirlService iGirlService;
 
     @Value("${name}")
     String name;
@@ -95,8 +99,18 @@ public class UserController {
 
         stringBuilder.append(" sex:");
         stringBuilder.append(sex);
+        Stack st = new Stack();
 
         return stringBuilder.toString();
+    }
+
+    @RequestMapping("insertUser")
+    public void insertUser(){
+        User user = new User();
+        user.setSex(1);
+        user.setName("蜜姐姐");
+        user.setAge(27);
+        iGirlService.insert(user);
     }
 
 }

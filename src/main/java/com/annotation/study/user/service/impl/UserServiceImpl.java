@@ -29,6 +29,7 @@ public class UserServiceImpl implements IUserService {
     UserServiceImpl2 userServiceImpl2;
 
     @Override
+    @Transactional
     public int insert(User user) {
         return userMapper.insert(user);
     }
