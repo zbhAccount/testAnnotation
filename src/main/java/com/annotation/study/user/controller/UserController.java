@@ -122,4 +122,11 @@ public class UserController {
         iGirlService.update(new User());
     }
 
+    @RequestMapping("asyncUser")
+    public void asyncUser(){
+        Thread t = Thread.currentThread();
+        log.info("多线程：{}", t.getName());
+        iGirlService.async(new User());
+    }
+
 }

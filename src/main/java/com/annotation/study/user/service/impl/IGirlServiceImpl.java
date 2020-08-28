@@ -50,4 +50,17 @@ public class IGirlServiceImpl implements IGirlService {
         Thread t = Thread.currentThread();
         log.info("多线程：{}", t.getName());
     }
+
+
+    /**
+     * 使用@Async註解
+     * @param user
+     * @return
+     */
+    @Async("asyncServiceExecutor")
+    @Override
+    public void async(User user) {
+        Thread t = Thread.currentThread();
+        log.info("多线程：{}", t.getName());
+    }
 }

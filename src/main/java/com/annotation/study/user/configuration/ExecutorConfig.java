@@ -8,9 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 
 @Configuration
 @EnableAsync
@@ -39,7 +37,7 @@ public class ExecutorConfig {
         executor.setMaxPoolSize(20);
         executor.setQueueCapacity(100);
         executor.setKeepAliveSeconds(60);
-        executor.setThreadNamePrefix("girl-service");
+        executor.setThreadNamePrefix("girl-service-");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.AbortPolicy());
         executor.initialize();
         return executor;
@@ -53,7 +51,7 @@ public class ExecutorConfig {
         executor.setMaxPoolSize(50);
         executor.setQueueCapacity(5000);
         executor.setKeepAliveSeconds(60);
-        executor.setThreadNamePrefix("girl-service");
+        executor.setThreadNamePrefix("girl-service-");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.AbortPolicy());
         executor.initialize();
         return executor;
@@ -61,13 +59,7 @@ public class ExecutorConfig {
 
     @Bean(name="asyncServiceExecutor")
     public Executor asyncServiceExecutor(){
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setAllowCoreThreadTimeOut(true);
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(50);
-        executor.setQueueCapacity(2000);
-        executor.setThreadNamePrefix("girl-service");
-        executor.initialize();
-        return executor;
+        return new ThreadPoolExecutorExtend(10,20,60,
+                TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(1000), Executors.defaultThreadFactory(), "asyncPool-");
     }
 }

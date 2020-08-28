@@ -8,4 +8,6 @@ public interface IGirlService {
 
     public void update(User user);
 
+    public void async(User user);
+
 }
