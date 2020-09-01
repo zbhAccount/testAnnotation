@@ -37,7 +37,9 @@
 2. 扩展ThreadPoolExecutor <br>
 3. Future <br>
 * 配合applicationContext.getBean实现获取单独Bean实现业务逻辑。 eg: 获取各菜单气泡数
-
+* 传参定位handle 
+* 传service方法参数 
+* 获取service方法结果
 
 
 

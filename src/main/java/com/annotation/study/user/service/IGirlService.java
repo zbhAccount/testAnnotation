@@ -10,7 +10,7 @@ public interface IGirlService {
 
     public void async(User user);
 
-    public Integer getCount();
+    public Integer getCount(User user);
 
     public void execute();
 
