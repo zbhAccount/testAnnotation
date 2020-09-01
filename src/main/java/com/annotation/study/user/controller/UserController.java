@@ -129,4 +129,8 @@ public class UserController {
         iGirlService.async(new User());
     }
 
+    @RequestMapping("futureUser")
+    public void futureUser(){
+        iGirlService.execute();
+    }
 }

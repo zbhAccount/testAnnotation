@@ -10,4 +10,8 @@ public interface IGirlService {
 
     public void async(User user);
 
+    public Integer getCount();
+
+    public void execute();
+
 }

@@ -1,5 +1,7 @@
 package com.annotation.study.user.service.impl;
 
+import com.annotation.study.user.component.AsyncFutureTask;
+import com.annotation.study.user.configuration.ThreadPoolExecutorExtend;
 import com.annotation.study.user.model.User;
 import com.annotation.study.user.service.IGirlService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 @Slf4j
 @Service
@@ -18,11 +22,14 @@ public class IGirlServiceImpl implements IGirlService {
     private ThreadPoolTaskExecutor createServiceExecutor;
     @Resource
     private ThreadPoolTaskExecutor updateServiceExecutor;
-    @Autowired
+    @Resource
+    private ThreadPoolExecutorExtend asyncServiceExecutor;
+    @Resource
     private UserServiceImpl userServiceImpl;
 
     /**
      * 不使用@Async注解
+     *
      * @param user
      * @return
      */
@@ -41,6 +48,7 @@ public class IGirlServiceImpl implements IGirlService {
 
     /**
      * 使用@Async註解
+     *
      * @param user
      * @return
      */
@@ -54,13 +62,32 @@ public class IGirlServiceImpl implements IGirlService {
 
     /**
      * 使用@Async註解
+     *
      * @param user
      * @return
      */
-    @Async("asyncServiceExecutor")
+//    @Async("asyncServiceExecutor")
     @Override
     public void async(User user) {
         Thread t = Thread.currentThread();
         log.info("多线程：{}", t.getName());
     }
+
+    @Override
+    public Integer getCount() {
+        return 10;
+    }
+
+    public void execute() {
+        AsyncFutureTask<Integer> asyncFutureTask = new AsyncFutureTask<Integer>();
+        Future future = asyncServiceExecutor.submit(asyncFutureTask);
+        try {
+            future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
